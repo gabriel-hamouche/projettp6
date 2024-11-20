@@ -13,7 +13,7 @@ class ProfilController extends AbstractController
     #[Route('/profil', name: 'app_profil')]
     public function index(): Response {
         return $this->json([
-            'message' => 'Welcome to your new controller!',
+            'message' => 'WMarucs',
             'path' => 'src/Controller/ProfilController.php',
         ]);
     }
