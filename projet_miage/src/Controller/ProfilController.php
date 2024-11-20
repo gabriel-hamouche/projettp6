@@ -21,7 +21,7 @@ class ProfilController extends AbstractController
         #[Route('/profil/create', name: 'profil_create')]
         public function createProfil(EntityManagerInterface $entityManager): Response {
             $profil = new Profil();
-            $profil->setName('Jean Dupont');
+            $profil->setName('Joseph');
             $profil->setJobTitle('Développeur Symfony');
             $profil->setSummary('Passionné par le développement et la technologie.');
             $profil->setSalary(45000);
