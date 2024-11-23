@@ -25,10 +25,10 @@ class Developpeur
     #[ORM\Column(length: 255)]
     private ?string $localisation = null;
 
-    #[ORM\Column(type: Types::SIMPLE_ARRAY, enumType: LangagesEnum::class)]
-    private array $langage = [];
+    #[ORM\Column(enumType: LangagesEnum::class, nullable: true)]
+        private ?LangagesEnum $langage = null;
 
-    #[ORM\Column(enumType: ExperienceEnum::class)]
+    #[ORM\Column(enumType: ExperienceEnum::class, nullable: true)]
     private ?ExperienceEnum $experience = null;
 
     #[ORM\Column]
@@ -37,8 +37,8 @@ class Developpeur
     #[ORM\Column(length: 512, nullable: true)]
     private ?string $biographie = null;
 
-    #[ORM\Column(type: Types::OBJECT, nullable: true)]
-    private ?object $avatar = null;
+    #[ORM\Column(length: 512, nullable: true)]
+    private ?string $avatar = null;
 
     public function getId(): ?int
     {
@@ -81,15 +81,12 @@ class Developpeur
         return $this;
     }
 
-    /**
-     * @return LangagesEnum[]
-     */
-    public function getLangage(): array
+    public function getLangage(): ?LangagesEnum
     {
         return $this->langage;
     }
 
-    public function setLangage(array $langage): static
+    public function setLangage(LangagesEnum $langage): static
     {
         $this->langage = $langage;
 
@@ -132,12 +129,12 @@ class Developpeur
         return $this;
     }
 
-    public function getAvatar(): ?object
+    public function getAvatar(): ?string
     {
         return $this->avatar;
     }
 
-    public function setAvatar(?object $avatar): static
+    public function setAvatar(string $avatar): static
     {
         $this->avatar = $avatar;
 
