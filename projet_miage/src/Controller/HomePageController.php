@@ -5,27 +5,38 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 use Symfony\Component\Routing\Attribute\Route;
 
 class HomePageController extends AbstractController
 {
     #[Route('/', name: 'app_home_page')]
-    public function index(): Response
+    public function index(SessionInterface $session): Response
     {
-        return $this->render('base.html.twig', [
+        if ($session->get('dev_is_logged_in', false)) {
+
+        return $this->render('connectedev.html.twig', [
 
         ]);
+
+        } else {
+            return $this->render('base.html.twig', [
+
+            ]);
+    
+    }
       
     }
 
 
-    #[Route('/connectedev', name: 'app_connectedevhome_page')]
+    /**#[Route('/connectedev', name: 'app_connectedevhome_page')]
     public function connectedev(): Response{
         return $this->render('connectedev.html.twig', [
 
         ]);
-    }
+    }*/
 
 
 }

@@ -14,12 +14,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 class InscriptionController extends AbstractController
 {
 
     public function __construct(private readonly EntityManagerInterface $em){}
     #[Route('/inscriptiondev', name: 'app_inscription_dev', methods:['GET','POST'])]
-    public function newDev(Request $requete, EntityManagerInterface $em): Response
+    public function newDev(Request $requete, EntityManagerInterface $em, SessionInterface $session): Response
     {
         $dev = new Developpeur();
         $form = $this->createForm(InscriptionDeveloppeurType::class, $dev);
@@ -32,7 +34,8 @@ class InscriptionController extends AbstractController
             $dev->setExperience($exp); // pareil ici j'ai bien galère
             $em->persist($dev);
             $em->flush();
-            return $this->redirectToRoute('app_connectedevhome_page', [], Response::HTTP_SEE_OTHER);
+            $session->set('dev_is_logged_in', true);
+            return $this->redirectToRoute('app_home_page', [], Response::HTTP_SEE_OTHER);
         }
         
         return $this->renderForm('inscription/dev.html.twig', [
@@ -43,7 +46,7 @@ class InscriptionController extends AbstractController
 
 
     #[Route('/inscription_entreprise', name: 'app_inscription_entreprise', methods:['GET','POST'])]
-    public function newEntreprise(Request $requete, EntityManagerInterface $em): Response
+    public function newEntreprise(Request $requete, EntityManagerInterface $em, SessionInterface $session): Response
     {
         $entreprise = new Entreprise();
         $form = $this->createForm(InscriptionEntrepriseType::class, $entreprise);
@@ -56,6 +59,8 @@ class InscriptionController extends AbstractController
             $entreprise->setExperience($exp); // pareil ici j'ai bien galère
             $em->persist($entreprise);
             $em->flush();
+            $session->set('entreprise_is_logged_in', true);
+
             return $this->redirectToRoute('app_home_page', [], Response::HTTP_SEE_OTHER);
         }
         
@@ -64,5 +69,16 @@ class InscriptionController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/deconnexion', name: 'app_deconnexion')]
+    public function deconnexion(SessionInterface $session): Response
+    {
+    // Supprimer l'état de connexion
+        $session->remove('dev_is_logged_in');
+
+    // Rediriger vers la page d'accueil
+        return $this->redirectToRoute('app_home_page');
+    }
+
 
 }
