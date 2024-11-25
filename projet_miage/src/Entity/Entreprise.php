@@ -6,6 +6,7 @@ use App\Enum\ExperienceEnum;
 use App\Enum\LangagesEnum;
 use App\Repository\EntrepriseRepository;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\Inflector\Language;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EntrepriseRepository::class)]
@@ -22,11 +23,11 @@ class Entreprise
     #[ORM\Column(length: 255)]
     private ?string $localisation = null;
 
-    #[ORM\Column(type: Types::SIMPLE_ARRAY, enumType: LangagesEnum::class)]
-    private array $technologie = [];
+    #[ORM\Column(type: 'string', enumType: LangagesEnum::class, nullable: true)]
+    private ?LangagesEnum $technologie = null;
 
-    #[ORM\Column(type: Types::SIMPLE_ARRAY, enumType: ExperienceEnum::class)]
-    private array $experience = [];
+    #[ORM\Column(enumType: ExperienceEnum::class, nullable: true)]
+    private ?ExperienceEnum $experience= null;
 
     #[ORM\Column]
     private ?float $salaire = null;
@@ -66,12 +67,12 @@ class Entreprise
     /**
      * @return LangagesEnum[]
      */
-    public function getTechnologie(): array
+    public function getTechnologie(): ?LangagesEnum
     {
         return $this->technologie;
     }
 
-    public function setTechnologie(array $technologie): static
+    public function setTechnologie(LangagesEnum $technologie): static
     {
         $this->technologie = $technologie;
 
@@ -81,12 +82,12 @@ class Entreprise
     /**
      * @return ExperienceEnum[]
      */
-    public function getExperience(): array
+    public function getExperience(): ?ExperienceEnum
     {
         return $this->experience;
     }
 
-    public function setExperience(array $experience): static
+    public function setExperience(ExperienceEnum $experience): static
     {
         $this->experience = $experience;
 
