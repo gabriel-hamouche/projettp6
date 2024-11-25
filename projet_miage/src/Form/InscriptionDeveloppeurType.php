@@ -26,11 +26,11 @@ class InscriptionDeveloppeurType extends AbstractType
             ->add('nom', TextType::class,['required' => false])
             ->add('prenom',TextType::class,['required' => false])
             ->add('localisation',TextType::class,['required' => false])
-            ->add('Langages', EnumType::class, ['class' => LangagesEnum::class, 'mapped' =>false ])
+            ->add('langage', EnumType::class, ['class' => LangagesEnum::class, 'mapped' =>false ])
             ->add('experience', EnumType::class, ['class' => ExperienceEnum::class, 'mapped' =>false ])
-            ->add('salaire ',MoneyType::class,['required' => false])
+            ->add('salaire',MoneyType::class,['required' => false])
             ->add('biographie',TextType::class,['required' => false])
-            ->add('Avatar', FileType::class, ['required' => false]);
+            ->add('avatar', FileType::class, ['required' => false]);
 
         ;
     }

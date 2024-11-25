@@ -25,7 +25,7 @@ class Developpeur
     #[ORM\Column(length: 255)]
     private ?string $localisation = null;
 
-    #[ORM\Column(enumType: LangagesEnum::class, nullable: true)]
+    #[ORM\Column(type: 'string', enumType: LangagesEnum::class, nullable: true)]
         private ?LangagesEnum $langage = null;
 
     #[ORM\Column(enumType: ExperienceEnum::class, nullable: true)]
