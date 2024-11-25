@@ -18,7 +18,7 @@ class InscriptionController extends AbstractController
 {
 
     public function __construct(private readonly EntityManagerInterface $em){}
-    #[Route('/inscription', name: 'app_inscription_dev', methods:['GET','POST'])]
+    #[Route('/inscriptiondev', name: 'app_inscription_dev', methods:['GET','POST'])]
     public function newDev(Request $requete, EntityManagerInterface $em): Response
     {
         $dev = new Developpeur();
@@ -32,7 +32,7 @@ class InscriptionController extends AbstractController
             $dev->setExperience($exp); // pareil ici j'ai bien galère
             $em->persist($dev);
             $em->flush();
-            return $this->redirectToRoute('app_home_page', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_connectedevhome_page', [], Response::HTTP_SEE_OTHER);
         }
         
         return $this->renderForm('inscription/dev.html.twig', [
@@ -42,7 +42,7 @@ class InscriptionController extends AbstractController
     }
 
 
-    #[Route('/inscription/entreprise', name: 'app_inscription_entreprise', methods:['GET','POST'])]
+    #[Route('/inscription_entreprise', name: 'app_inscription_entreprise', methods:['GET','POST'])]
     public function newEntreprise(Request $requete, EntityManagerInterface $em): Response
     {
         $entreprise = new Entreprise();

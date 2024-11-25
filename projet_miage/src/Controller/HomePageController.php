@@ -18,4 +18,14 @@ class HomePageController extends AbstractController
         ]);
       
     }
+
+
+    #[Route('/connectedev', name: 'app_connectedevhome_page')]
+    public function connectedev(): Response{
+        return $this->render('connectedev.html.twig', [
+
+        ]);
+    }
+
+
 }
