@@ -18,7 +18,9 @@ header {
     color: #fff;
     padding: 10px 0;
 }
-
+h1{
+    color: red;
+}
 nav ul {
     list-style: none;
     padding: 0;
