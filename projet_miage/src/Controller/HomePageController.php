@@ -15,7 +15,7 @@ class HomePageController extends AbstractController
     #[Route('/', name: 'app_home_page')]
     public function index(SessionInterface $session): Response
     {
-        if ($session->get('dev_is_logged_in', false)) {
+        if ($session->get('dev_is_logged_in', false)) {//c'est a l'envers
 
         return $this->render('connectedev.html.twig', [
 

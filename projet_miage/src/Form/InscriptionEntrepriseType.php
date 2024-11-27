@@ -20,8 +20,8 @@ class InscriptionEntrepriseType extends AbstractType
         $builder
             ->add('titre_poste', TextType::class, ['required' => false])
             ->add('localisation', TextType::class, ['required' => false])
-            ->add('technologie', EnumType::class, ['class' => LangagesEnum::class, 'mapped' =>false ])
-            ->add('experience', EnumType::class, ['class' => ExperienceEnum::class, 'mapped' =>false ])
+            ->add('technologie', EnumType::class, ['class' => LangagesEnum::class ])
+            ->add('experience', EnumType::class, ['class' => ExperienceEnum::class])
             ->add('salaire', MoneyType::class, ['required' =>false])
             ->add('description', TextType::class, ['required' =>false])
         ;
