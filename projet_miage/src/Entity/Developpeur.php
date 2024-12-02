@@ -44,6 +44,10 @@ class Developpeur
     #[ORM\Column(length: 512, nullable: true)]
     private ?string $avatar = null;
 
+    #[ORM\OneToOne(targetEntity: User::class, inversedBy: 'developpeur', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private User $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -145,4 +149,22 @@ class Developpeur
 
         return $this;
     }
+
+    public function getUser(): ?User
+{
+    return $this->user;
+}
+
+public function setUser(?User $user): self
+{
+    $this->user = $user;
+
+    // Assure la relation inverse si nécessaire
+    if ($user !== null && $user->getDeveloppeur() !== $this) {
+        $user->setDeveloppeur($this);
+    }
+
+    return $this;
+}
+
 }

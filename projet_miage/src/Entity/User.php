@@ -33,6 +33,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\OneToOne(targetEntity: Developpeur::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?Developpeur $developpeur = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +105,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getDeveloppeur(): ?Developpeur
+{
+    return $this->developpeur;
+}
+
+public function setDeveloppeur(?Developpeur $developpeur): self
+{
+    // Vérifie si l'ancien développeur est défini et dissocie l'utilisateur
+    if ($this->developpeur !== null && $this->developpeur !== $developpeur) {
+        $this->developpeur->setUser(null);
+    }
+
+    // Associe le nouvel développeur à cet utilisateur
+    $this->developpeur = $developpeur;
+
+    if ($developpeur !== null && $developpeur->getUser() !== $this) {
+        $developpeur->setUser($this);
+    }
+
+    return $this;
+}
 
     /**
      * @see UserInterface

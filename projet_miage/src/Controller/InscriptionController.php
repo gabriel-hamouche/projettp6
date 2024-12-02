@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\DeveloppeurRepository;
 use App\Entity\Developpeur;
 use App\Entity\Entreprise;
+use App\Entity\User;
 use App\Enum\LangageEnum;
 
 use App\Form\InscriptionDeveloppeurType;
@@ -23,6 +24,7 @@ class InscriptionController extends AbstractController
     #[Route('/inscriptiondev', name: 'app_inscription_dev', methods:['GET','POST'])]
     public function newDev(Request $requete, EntityManagerInterface $em, SessionInterface $session): Response
     {
+
         $dev = new Developpeur();
         $form = $this->createForm(InscriptionDeveloppeurType::class, $dev);
         $form->handleRequest($requete);
@@ -32,6 +34,9 @@ class InscriptionController extends AbstractController
             $dev->setLangage($langage);
             $exp = $form->get('experience')->getData();
             $dev->setExperience($exp); // pareil ici j'ai bien galère
+            $userid = $session->get('user_id'); // Lier le développeur à l'utilisateur
+            $dev->setUser($userid);
+            
             $em->persist($dev);
             $em->flush();
             $session->set('dev_is_logged_in', true);
