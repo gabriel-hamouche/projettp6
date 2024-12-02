@@ -29,5 +29,18 @@ class HomePageController extends AbstractController
         ]);
     }
 
+    #[Route('/connecteentre', name: 'app_entrehome_page')]
+    public function connecteentre(): Response{
+        return $this->render('connecteentre.html.twig', [
+
+        ]);
+    }
+
+    #[Route('/choix', name: 'app_choixinscription_page')]
+    public function choix(): Response{
+        return $this->render('choix.html.twig', [
+
+        ]);
+    }
 
 }

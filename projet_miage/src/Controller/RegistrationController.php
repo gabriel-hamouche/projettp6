@@ -33,7 +33,8 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             $security->login($user, AuthentificationAuthenticator::class, 'main');
             // do anything else you need here, like send an email
-            return $this->redirectToRoute('app_inscription_dev', [], Response::HTTP_SEE_OTHER);
+
+            return $this->redirectToRoute('app_choixinscription_page', [], Response::HTTP_SEE_OTHER);
 
             
         }
