@@ -16,18 +16,10 @@ class HomePageController extends AbstractController
     #[Route('/', name: 'app_home_page')]
     public function index(SessionInterface $session): Response
     {
-        if (!$this->denyAccessUnlessGranted('IS_AUTHENTICATED')) {//c'est a l'envers
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+        return $this->render('connectedev.html.twig');
 
-        return $this->render('connectedev.html.twig', [
-
-        ]);
-
-        } else {
-            return $this->render('base.html.twig', [
-
-            ]);
-    
-    }
+        
       
     }
 
