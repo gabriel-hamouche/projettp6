@@ -61,7 +61,7 @@ class InscriptionController extends AbstractController
             $em->flush();
             $session->set('entreprise_is_logged_in', true);
 
-            return $this->redirectToRoute('app_connectedevhome_page', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_entrehome_page', [], Response::HTTP_SEE_OTHER);
         }
         
         return $this->renderForm('inscription/entreprise.html.twig', [
