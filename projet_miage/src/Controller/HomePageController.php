@@ -16,20 +16,18 @@ class HomePageController extends AbstractController
     #[Route('/', name: 'app_home_page')]
     public function index(SessionInterface $session): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
-        return $this->render('connectedev.html.twig');
-
+        return $this->render('base.html.twig');
         
       
     }
 
 
-    /**#[Route('/connectedev', name: 'app_connectedevhome_page')]
+    #[Route('/connectedev', name: 'app_connectedevhome_page')]
     public function connectedev(): Response{
         return $this->render('connectedev.html.twig', [
 
         ]);
-    }*/
+    }
 
 
 }

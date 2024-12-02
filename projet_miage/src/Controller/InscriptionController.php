@@ -35,7 +35,7 @@ class InscriptionController extends AbstractController
             $em->persist($dev);
             $em->flush();
             $session->set('dev_is_logged_in', true);
-            return $this->redirectToRoute('app_home_page', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_connectedevhome_page', [], Response::HTTP_SEE_OTHER);
         }
         
         return $this->renderForm('inscription/dev.html.twig', [
@@ -61,7 +61,7 @@ class InscriptionController extends AbstractController
             $em->flush();
             $session->set('entreprise_is_logged_in', true);
 
-            return $this->redirectToRoute('app_home_page', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_connectedevhome_page', [], Response::HTTP_SEE_OTHER);
         }
         
         return $this->renderForm('inscription/entreprise.html.twig', [
@@ -70,7 +70,7 @@ class InscriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/deconnexion', name: 'app_deconnexion')]
+   /** #[Route('/deconnexion', name: 'app_deconnexion')]
     public function deconnexion(SessionInterface $session): Response
     {
     // Supprimer l'état de connexion
@@ -78,7 +78,7 @@ class InscriptionController extends AbstractController
 
     // Rediriger vers la page d'accueil
         return $this->redirectToRoute('app_home_page');
-    }
+    }*/
 
 
 }
