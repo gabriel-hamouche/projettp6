@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Http\SecurityRequestAttributes;
 
 
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,7 +16,7 @@ class HomePageController extends AbstractController
     #[Route('/', name: 'app_home_page')]
     public function index(SessionInterface $session): Response
     {
-        if ($session->get('dev_is_logged_in', false)) {//c'est a l'envers
+        if (!$this->denyAccessUnlessGranted('IS_AUTHENTICATED')) {//c'est a l'envers
 
         return $this->render('connectedev.html.twig', [
 

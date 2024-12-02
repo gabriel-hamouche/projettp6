@@ -16,11 +16,9 @@ class Developpeur
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $username = null;
+    
 
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
+   
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
@@ -51,29 +49,6 @@ class Developpeur
         return $this->id;
     }
 
-    public function getusename(): ?string
-    {
-        return $this->username;
-    }
-
-    public function setusername(string $username): static
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    public function getpassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setpassword(string $password): static
-    {
-        $this->password = $password;
-
-        return $this;
-    }
 
     public function getNom(): ?string
     {
