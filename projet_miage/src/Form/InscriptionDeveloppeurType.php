@@ -13,7 +13,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 
 
@@ -22,8 +21,6 @@ class InscriptionDeveloppeurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('password', PasswordType::class)
             ->add('nom',TextType::class)
             ->add('prenom',TextType::class)
             ->add('localisation',TextType::class)
